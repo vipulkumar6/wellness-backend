@@ -2,7 +2,8 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./config/db");
-
+const createSuperAdmin = require("./utils/createSuperAdmin");
+createSuperAdmin();
 dotenv.config();
 connectDB();
 
@@ -35,6 +36,8 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/admin", require("./routes/adminRoutes"));
+
 app.use("/api/assessments", require("./routes/assessmentRoutes"));
 app.use("/api/subscription", require("./routes/subscriptionRoutes"));
 app.use("/api/appointments", require("./routes/appointmentRoutes"));
